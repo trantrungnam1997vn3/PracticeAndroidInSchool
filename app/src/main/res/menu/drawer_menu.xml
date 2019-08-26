@@ -2,14 +2,54 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_mail_back"
-            android:title="import"
-            android:icon="@drawable/ic_contact_mail_black_24dp"
+            android:id="@+id/perimeter_acreage"
+            android:title="Tính chu vi và diện tích"
+            android:icon="@drawable/ic_crop_3_2_black_24dp"
             >
         </item>
         <item
-            android:id="@+id/nav_camera"
-            android:title="Camera"
+            android:id="@+id/compute_calendar"
+            android:title="Tính năm âm lịch"
+            android:icon="@drawable/ic_camera_enhance_black_24dp"></item>
+
+        <item
+            android:id="@+id/simple_equation"
+            android:title="Tính phương trình bậc nhất"
+            android:icon="@drawable/ic_camera_enhance_black_24dp"></item>
+
+        <item
+            android:id="@+id/multiplication_table"
+            android:title="Bảng cửu chương"
+            android:icon="@drawable/ic_camera_enhance_black_24dp"></item>
+
+        <item
+            android:id="@+id/splite_fullname"
+            android:title="Xuất họ và tên riêng"
+            android:icon="@drawable/ic_camera_enhance_black_24dp"></item>
+
+        <item
+            android:id="@+id/format_aray"
+            android:title="Thao tác với mảng"
+            android:icon="@drawable/ic_camera_enhance_black_24dp"></item>
+
+        <item
+            android:id="@+id/a_playing_card_random"
+            android:title="Rút 1 lá bài"
+            android:icon="@drawable/ic_camera_enhance_black_24dp"></item>
+
+        <item
+            android:id="@+id/three_playing_cards_random"
+            android:title="Rút 3 lá"
+            android:icon="@drawable/ic_camera_enhance_black_24dp"></item>
+
+        <item
+            android:id="@+id/play_three_card"
+            android:title="Chơi bài cào 2 người"
+            android:icon="@drawable/ic_camera_enhance_black_24dp"></item>
+
+        <item
+            android:id="@+id/play_three_card_with_bot"
+            android:title="Chơi bài cào với máy"
             android:icon="@drawable/ic_camera_enhance_black_24dp"></item>
     </group>
 </menu>

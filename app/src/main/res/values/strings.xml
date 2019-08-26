@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">PracticeAndroidInSchool</string>
+    <string name="hello_message">Wellcome to ComputeSumActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="length">Chiều dài</string>
+    <string name="width">Chiều rộng</string>
 </resources>
