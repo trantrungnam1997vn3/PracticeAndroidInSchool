@@ -1,16 +1,21 @@
 package com.example.practiceandroidinschool;
 
 
+import android.opengl.EGLExt;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,9 +25,11 @@ import java.util.regex.Pattern;
  */
 public class SimpleEquation extends Fragment implements View.OnClickListener {
 
-    private Button computePTB1;
-    private EditText ptb1Input;
-    private TextView resultAfterCompute;
+    private Button btnExecute;
+    private EditText inputA, inputB, inputC;
+    private TextView textViewResult;
+    private Spinner spinerOperation;
+    private List<String> listOperation = new ArrayList<String>();
 
     public SimpleEquation() {
         // Required empty public constructor
@@ -34,53 +41,57 @@ public class SimpleEquation extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_simple_equation, container, false);
-
-        computePTB1 = (Button) view.findViewById(R.id.computePTB1);
-
-        computePTB1.setOnClickListener(this);
+        listOperation.add("+");
+        listOperation.add("-");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(getActivity(), R.layout.spinner_item, listOperation);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+        Log.i("myApp", "go hể");
+        spinerOperation = (Spinner) view.findViewById(R.id.spinnerOperation);
+        spinerOperation.setAdapter(arrayAdapter);
+        btnExecute = (Button) view.findViewById(R.id.btnExecute);
+        btnExecute.setOnClickListener(this);
         return view;
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.computePTB1: {
-                ptb1Input = (EditText) getView().findViewById(R.id.ptb1);
+            case R.id.btnExecute: {
+                inputA = getView().findViewById(R.id.inputA);
+                inputB = getView().findViewById(R.id.inputB);
+                inputC = getView().findViewById(R.id.inputC);
+                spinerOperation = getView().findViewById(R.id.spinnerOperation);
+                textViewResult = getView().findViewById(R.id.textViewResult);
+                try {
 
-                String equation = ptb1Input.getText().toString();
-
-                Log.d("MyApp", equation);
-
-                Matcher numberMatch = Pattern.compile("[\\d]+").matcher(equation);
-
-
-                Log.d("MyApp", numberMatch.find(1)+"");
-                Matcher operatorMatch = Pattern.compile("[+-]+").matcher(equation);
-
-                if (numberMatch.find() && numberMatch.group().length() == 3 && operatorMatch.group().length() == 1) {
-                    double x = 0.0;
-                    switch (operatorMatch.group(0)) {
-                        case "+":
-                            x = (Integer.parseInt(numberMatch.group(2)) - Integer.parseInt(numberMatch.group(1))) / Integer.parseInt(numberMatch.group(0));
-
-                            Log.d("MyApp", x + "");
+                    int a = Integer.parseInt(inputA.getText().toString());
+                    int b = Integer.parseInt(inputB.getText().toString());
+                    int c = Integer.parseInt(inputC.getText().toString());
+                    String operation = spinerOperation.getSelectedItem().toString();
+                    Log.i("myApp", "go here" + operation);
+                    switch (operation) {
+                        case "+": {
+                            float result = (c - b) / (float)a;
+                            textViewResult.setText("Kết quả: " + result);
                             break;
-                        case "-":
-                            x = (Integer.parseInt(numberMatch.group(2)) + Integer.parseInt(numberMatch.group(1))) / Integer.parseInt(numberMatch.group(0));
-
-                            Log.d("MyApp", x + "");
+                        }
+                        case "-": {
+                            float result = (c + b) / (float)a;
+                            textViewResult.setText("Kết quả: " + result);
                             break;
+                        }
                         default:
                             break;
-
                     }
-
-                    resultAfterCompute = (TextView) getView().findViewById(R.id.resultAfterCompute);
-                    resultAfterCompute.setText(x + "");
+                } catch (Exception e) {
+                    textViewResult.setText(e.toString());
+                    return;
                 }
 
                 break;
             }
+            default:
+                break;
         }
     }
 }
