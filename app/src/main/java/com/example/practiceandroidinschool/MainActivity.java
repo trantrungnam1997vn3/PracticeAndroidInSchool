@@ -88,6 +88,39 @@ public class MainActivity extends AppCompatActivity {
                         displayMessage("Phương trình bậc nhất");
                         break;
                     }
+
+                    case R.id.multiplication_table: {
+                        fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        MultiplicationTables multiplicationTables = new MultiplicationTables();
+                        fragmentTransaction.add(R.id.fragment_container, multiplicationTables);
+                        fragmentTransaction.commit();
+                        menuItem.setChecked(true);
+                        displayMessage("Bảng cửu chương");
+                        break;
+                    }
+
+                    case R.id.splite_fullname: {
+                        fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        SplitFullName splitFullName = new SplitFullName();
+                        fragmentTransaction.add(R.id.fragment_container, splitFullName);
+                        fragmentTransaction.commit();
+                        menuItem.setChecked(true);
+                        displayMessage("Họ và tên riêng");
+                        break;
+                    }
+
+                    case R.id.format_aray: {
+                        fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        HandleWithArrayRandom handleWithArrayRandom = new HandleWithArrayRandom();
+                        fragmentTransaction.add(R.id.fragment_container, handleWithArrayRandom);
+                        fragmentTransaction.commit();
+                        menuItem.setChecked(true);
+                        displayMessage("Thao tác với mảng");
+                        break;
+                    }
                 }
                 drawerLayout.closeDrawers();
                 return true;
